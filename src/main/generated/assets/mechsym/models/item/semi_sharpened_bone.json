@@ -1,0 +1,6 @@
+{
+    "parent": "minecraft:item/handheld",
+    "textures": {
+        "layer0": "mechsym:item/semi_sharpened_bone"
+    }
+}

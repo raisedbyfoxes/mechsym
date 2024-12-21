@@ -1,0 +1,33 @@
+{
+    "schemaVersion": 1,
+    "id": "mechsym",
+    "version": "${version}",
+    "name": "Mechanical Sympathy",
+    "description": "Core mod for the Mechanical Sympathy pack.",
+    "authors": [
+        "raisedbyfoxes"
+    ],
+    "license": "MIT",
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+            "raisedbyfoxes.mechsym.Mechsym"
+        ],
+        "client": [
+            "raisedbyfoxes.mechsym.client.MechsymClient"
+        ],
+        "fabric-datagen": [
+            "raisedbyfoxes.mechsym.data.MechsymDatagen"
+        ]
+    },
+    "icon": "icon.png",
+    "mixins": [
+        "mechsym.mixins.json"
+    ],
+    "depends": {
+        "fabricloader": ">=${loader_version}",
+        "fabric-language-kotlin": ">=${kotlin_loader_version}",
+        "fabric": "*",
+        "minecraft": "${minecraft_version}"
+    }
+}
