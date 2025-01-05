@@ -1,0 +1,24 @@
+name = "Mechanical Sympathy"
+version = "0.0.0"
+
+minecraft_version = "1.20.1"
+fabric_version = "0.16.9"
+
+[mods]
+# Keys in this table correspond to a Modrinth slug for a mod
+# Values correspond to a mod's version on Modrinth
+
+# Performance
+sodium = "mc1.20.1-0.5.11"
+lithium = "mc1.20.1-0.11.2"
+indium = "1.0.34+mc1.20.1"
+ferrite-core = "6.0.1"
+
+# Utility
+modmenu = "7.2.2"
+
+# Tweaks/fixes
+no-chat-reports = "Fabric-1.20.1-v2.2.2"
+
+# Library
+fabric-api = "0.92.3+1.20.1"
