@@ -36,8 +36,8 @@ class MechsymClient : ClientModInitializer {
                     matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(entity.getPitch(tickDelta)))
                     matrices.translate(-0.3F, 0F, 0F)
 
+                    // Minecraft items are rotated 45 degrees (like in inventory) so account for that
                     matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(-45F))
-
 
                     MinecraftClient.getInstance().itemRenderer.renderItem(
                         ItemStack(MSItems.BONE_SPEAR),

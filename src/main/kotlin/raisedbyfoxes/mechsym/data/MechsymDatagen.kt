@@ -28,14 +28,14 @@ class MechsymDatagen : DataGeneratorEntrypoint {
         }
 
         override fun generateItemModels(gen: ItemModelGenerator) {
-            gen.register(MSItems.SEMI_SHARPENED_BONE, Models.HANDHELD)
+            gen.register(MSItems.SHARP_BONE, Models.HANDHELD)
             gen.register(MSItems.BONE_SPEAR, Models.HANDHELD)
         }
     }
 
     class EnglishLangProvider(dataOut: FabricDataOutput) : FabricLanguageProvider(dataOut, "en_us") {
         override fun generateTranslations(builder: TranslationBuilder) {
-            builder.add(MSItems.SEMI_SHARPENED_BONE, "Semi-Sharpened Bone")
+            builder.add(MSItems.SHARP_BONE, "Sharp Bone")
             builder.add(MSItems.BONE_SPEAR, "Bone Spear")
 
             builder.add(MSEntityTypes.BONE_SPEAR, "Bone Spear")

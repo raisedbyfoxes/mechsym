@@ -23,17 +23,19 @@ class Mechsym : ModInitializer {
 
             if (blockState.isIn(BlockTags.BASE_STONE_OVERWORLD) && heldStack.item == Items.BONE) {
                 heldStack.decrement(1)
-                player.giveItemStack(ItemStack(MSItems.SEMI_SHARPENED_BONE))
+                player.giveItemStack(ItemStack(MSItems.SHARP_BONE))
                 world.playSound(null, hit.blockPos, SoundEvents.BLOCK_GRINDSTONE_USE, SoundCategory.BLOCKS)
 
                 return@register ActionResult.SUCCESS
             }
 
-            ActionResult.PASS
+            return@register ActionResult.PASS
         }
     }
 
     companion object {
+        const val TPS = 20
+
         fun id(path: String) = Identifier("mechsym", path)
     }
 }
