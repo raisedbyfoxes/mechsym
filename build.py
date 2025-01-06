@@ -64,6 +64,8 @@ def build_mrpack():
             "modrinth.index.json", json.dumps(modrinth_index_manifest, indent=4)
         )
 
+        copy_packfiles(pack_zip)
+
 
 def create_mrpack_mod_entry(slug, version_number):
     log(f"Requesting info for mod `{slug}` {version_number}")
@@ -83,6 +85,13 @@ def create_mrpack_mod_entry(slug, version_number):
                 "downloads": [mod_file["url"]],
             }
 
+def copy_packfiles(pack_zip):
+    log("Copying packfiles")
+
+    for path, _, files in os.walk("packfiles"):
+        filepaths_in_dir = [f"{path}/{file}" for file in files]
+        for filepath in filepaths_in_dir:
+            pack_zip.write(filepath, filepath.replace("packfiles", "overrides"))
 
 def load_pack_metadata():
     with open("pack.toml", "rb") as file:

@@ -182,12 +182,22 @@ object MSItems {
             val useSecs = useTicks.toFloat() / Mechsym.TPS
             ctx.drawText(textRenderer, "%.2fs (${useTicks}t)".format(useSecs), 10, 10, 0xFF7700, true)
 
+            // Charge bar background
             ctx.fill(
                 ctx.scaledWindowWidth / 2 - 100,
                 ctx.scaledWindowHeight - 104,
                 ctx.scaledWindowWidth / 2 + 100,
                 ctx.scaledWindowHeight - 100,
-                0xFF0000 or ((min(useSecs / 0.5F, 1F) * 255F).toInt() shl 24)
+                0x555555 or ((min(useSecs / 0.5F, 1F) * 255F).toInt() shl 24)
+            )
+
+            // Charge bar fill
+            ctx.fill(
+                ctx.scaledWindowWidth / 2 - 100,
+                ctx.scaledWindowHeight - 104,
+                ctx.scaledWindowWidth / 2 - 100 + (min(useSecs, 2F) * 100F).toInt(),
+                ctx.scaledWindowHeight - 100,
+                0xAAAAAA or ((min(useSecs / 0.5F, 1F) * 255F).toInt() shl 24)
             )
         }
     })

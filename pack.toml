@@ -10,6 +10,7 @@ fabric_version = "0.16.9"
 
 # Main content mods
 mechsym = { path = "core" }
+create-fabric = "0.5.1-j-build.1631+mc1.20.1"
 
 # Performance
 sodium = "mc1.20.1-0.5.11"

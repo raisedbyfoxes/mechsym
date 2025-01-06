@@ -17,9 +17,11 @@ class MechsymDatagen : DataGeneratorEntrypoint {
 
         pack.addProvider(::BlockLootTables)
         pack.addProvider(::EntityLootTables)
+        pack.addProvider(::MSWorldPresets)
 
         pack.addProvider(::ModelProvider)
         pack.addProvider(::EnglishLangProvider)
+
     }
 
     class ModelProvider(dataOut: FabricDataOutput) : FabricModelProvider(dataOut) {
