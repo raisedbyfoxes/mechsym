@@ -3,6 +3,7 @@ package raisedbyfoxes.mechsym
 import com.google.common.collect.ImmutableMultimap
 import com.google.common.collect.Multimap
 import net.minecraft.client.MinecraftClient
+import net.minecraft.client.gui.DrawContext
 import net.minecraft.client.gui.screen.Screen
 import net.minecraft.client.item.TooltipContext
 import net.minecraft.entity.Entity
@@ -29,7 +30,7 @@ import net.minecraft.util.TypedActionResult
 import net.minecraft.util.UseAction
 import net.minecraft.world.World
 import raisedbyfoxes.mechsym.entity.BoneSpearEntity
-import raisedbyfoxes.mechsym.ext.ItemFOVAdjust
+import raisedbyfoxes.mechsym.item.ItemExt
 import raisedbyfoxes.mechsym.text.StatText
 import raisedbyfoxes.mechsym.text.Styles
 import kotlin.math.min
@@ -74,8 +75,8 @@ object MSItems {
             val sharpenStage = stack.nbt!!.getInt("sharpenStage")
             tooltip.add(
                 Text.literal("Sharpening: ").formatted(DARK_GRAY)
-                    .append(Text.literal("${sharpenStage * 20}% ").formatted(GOLD))
-                    .append(Text.literal("|".repeat(sharpenStage * MAX_SHARPEN_STAGE)).formatted(GRAY))
+                    .append(Text.literal("${sharpenStage * 20}% ").setStyle(Styles.AUBURN_BRIGHT))
+                    .append(Text.literal("|".repeat(sharpenStage * MAX_SHARPEN_STAGE)).setStyle(Styles.AUBURN))
                     .append(
                         Text.literal("|".repeat((MAX_SHARPEN_STAGE - sharpenStage) * MAX_SHARPEN_STAGE))
                             .formatted(DARK_GRAY)
@@ -90,10 +91,10 @@ object MSItems {
             return sharpenStage * 13 / MAX_SHARPEN_STAGE
         }
 
-        override fun getItemBarColor(stack: ItemStack): Int = 0xFFAA00
+        override fun getItemBarColor(stack: ItemStack): Int = 0xF1DD79
     })
 
-    val BONE_SPEAR = register("bone_spear", object : Item(Settings().maxCount(1)), ItemFOVAdjust {
+    val BONE_SPEAR = register("bone_spear", object : Item(Settings().maxCount(1)), ItemExt {
         val attributeModifiers: Multimap<EntityAttribute, EntityAttributeModifier> =
             ImmutableMultimap.builder<EntityAttribute, EntityAttributeModifier>()
                 .put(
@@ -173,7 +174,22 @@ object MSItems {
             }
         }
 
-        override fun getFOVMultiplier(useTicks: Int) = 0.8F
+        override fun getFOVMultiplier(useTicks: Int) = 0.85F
+
+        override fun drawHUD(ctx: DrawContext, delta: Float, useTicks: Int) {
+            val textRenderer = MinecraftClient.getInstance().textRenderer
+
+            val useSecs = useTicks.toFloat() / Mechsym.TPS
+            ctx.drawText(textRenderer, "%.2fs (${useTicks}t)".format(useSecs), 10, 10, 0xFF7700, true)
+
+            ctx.fill(
+                ctx.scaledWindowWidth / 2 - 100,
+                ctx.scaledWindowHeight - 104,
+                ctx.scaledWindowWidth / 2 + 100,
+                ctx.scaledWindowHeight - 100,
+                0xFF0000 or ((min(useSecs / 0.5F, 1F) * 255F).toInt() shl 24)
+            )
+        }
     })
 
     private fun register(name: String, item: Item): Item =

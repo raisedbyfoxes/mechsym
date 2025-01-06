@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:item/handheld",
-  "textures": {
-    "layer0": "mechsym:item/sharp_bone"
-  }
+    "parent": "minecraft:item/handheld",
+    "textures": {
+        "layer0": "mechsym:item/sharp_bone"
+    }
 }

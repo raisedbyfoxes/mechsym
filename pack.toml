@@ -6,7 +6,10 @@ fabric_version = "0.16.9"
 
 [mods]
 # Keys in this table correspond to a Modrinth slug for a mod
-# Values correspond to a mod's version on Modrinth
+# String values correspond to a mod's version on Modrinth
+
+# Main content mods
+mechsym = { path = "core" }
 
 # Performance
 sodium = "mc1.20.1-0.5.11"
@@ -16,9 +19,14 @@ ferrite-core = "6.0.1"
 
 # Utility
 modmenu = "7.2.2"
+jade = "11.12.0+fabric"
+damagenumbers = "1.4.0-fabric"
+appleskin = "2.5.1+mc1.20"
+gravestones = "v1.15"
 
 # Tweaks/fixes
 no-chat-reports = "Fabric-1.20.1-v2.2.2"
 
 # Library
 fabric-api = "0.92.3+1.20.1"
+fabric-language-kotlin = "1.13.0+kotlin.2.1.0"

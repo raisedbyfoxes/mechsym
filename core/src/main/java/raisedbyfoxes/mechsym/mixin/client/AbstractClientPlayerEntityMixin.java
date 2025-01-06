@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import raisedbyfoxes.mechsym.ext.ItemFOVAdjust;
+import raisedbyfoxes.mechsym.item.ItemExt;
 
 @Mixin(AbstractClientPlayerEntity.class)
 public abstract class AbstractClientPlayerEntityMixin extends PlayerEntity {
@@ -34,8 +34,9 @@ public abstract class AbstractClientPlayerEntityMixin extends PlayerEntity {
             @Local LocalFloatRef fov,
             @Local ItemStack activeItem
     ) {
-        var item = (ItemFOVAdjust) activeItem.getItem();
-        var fovMult = item.getFOVMultiplier(getItemUseTime());
-        fov.set(fov.get() * fovMult);
+        if (activeItem.getItem() instanceof ItemExt item) {
+            var fovMult = item.getFOVMultiplier(getItemUseTime());
+            fov.set(fov.get() * fovMult);
+        }
     }
 }

@@ -17,7 +17,6 @@ base {
 val targetJavaVersion = 21
 java {
     toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
-    withSourcesJar()
 }
 
 fabricApi {

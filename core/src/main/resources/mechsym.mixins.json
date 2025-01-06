@@ -8,7 +8,6 @@
     ],
     "client": [
         "client.AbstractClientPlayerEntityMixin",
-        "client.ItemMixin",
         "client.ItemStackMixin"
     ],
     "injectors": {

@@ -2,6 +2,7 @@ package raisedbyfoxes.mechsym.client
 
 import net.fabricmc.api.ClientModInitializer
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry
+import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.render.VertexConsumerProvider
 import net.minecraft.client.render.entity.EntityRenderer
@@ -13,9 +14,18 @@ import raisedbyfoxes.mechsym.MSEntityTypes
 import raisedbyfoxes.mechsym.MSItems
 import raisedbyfoxes.mechsym.Mechsym
 import raisedbyfoxes.mechsym.entity.BoneSpearEntity
+import raisedbyfoxes.mechsym.item.ItemExt
 
 class MechsymClient : ClientModInitializer {
     override fun onInitializeClient() {
+        HudRenderCallback.EVENT.register { ctx, delta ->
+            val player = MinecraftClient.getInstance().player ?: return@register
+            if (player.isUsingItem) {
+                val activeItem = player.activeItem.item
+                if (activeItem is ItemExt) activeItem.drawHUD(ctx, delta, player.itemUseTime)
+            }
+        }
+
         EntityRendererRegistry.register(MSEntityTypes.BONE_SPEAR) {
             object : EntityRenderer<BoneSpearEntity>(it) {
                 override fun getTexture(entity: BoneSpearEntity) = Mechsym.id("textures/item/bone_spear.png")
